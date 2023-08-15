@@ -8,9 +8,11 @@ import {DataService} from './data.service';
     <div class="parent">
       <div class="left">
         <button (click)="addTask()">Add</button>
-        <daypilot-queue [config]="queueConfig" #queue></daypilot-queue>
+        <daypilot-queue [config]="queueConfig" #queue ></daypilot-queue>
       </div>
       <div class="right">
+      <input type="datetime-local">
+
         <daypilot-scheduler [config]="schedulerConfig" #scheduler></daypilot-scheduler>
       </div>
     </div>
@@ -91,10 +93,11 @@ export class SchedulerComponent implements AfterViewInit {
   };
 
   schedulerConfig: DayPilot.SchedulerConfig = {
-    timeHeaders: [{groupBy:"Day", format: "dddd MMMM d, yyyy"},{groupBy:"Hour"}],
+    timeHeaders: [ {groupBy: "Cell", format: "HH:mm"}],
     scale: "Hour",
     days: DayPilot.Date.today().daysInMonth(),
     startDate: DayPilot.Date.today().firstDayOfMonth(),
+ 
     cellWidth: 80,
     dragOutAllowed: true,
     timeRangeSelectedHandling: "Enabled",
@@ -130,7 +133,16 @@ export class SchedulerComponent implements AfterViewInit {
     onEventMove: (args) => {
       if (args.external) {
         args.control.message("Moved from queue");
-        this.queue.control.events.remove(args.e.data.id);
+       
+console.log("this.queue.control.events",this.queue.control.events.list);
+console.log("args",args.e.data);
+// this.queue.control.events.list.forEach((item:any) =>{if(item.id=)} console.log("item",item.id="1")
+// );
+// console.log("args.e.data.id",args.e.data.id = "10");
+
+
+        // this.queue.control.events.update(args.e.data.id);
+        
       }
     },
     onBeforeEventRender: (args) => {
@@ -179,20 +191,22 @@ export class SchedulerComponent implements AfterViewInit {
     ];
 
     const form = [
-      {name: "Name", id: "text"},
-      {name: "Duration", id: "minutes", type: "select", options: durations}
+      {name: "Name", id: "text", No_of_Student: "text"},
+      {name: "Duration", id: "minutes", type: "select", options: durations,No_of_Student: "text"}
     ];
     const data= {
       text: "Task 1",
-      minutes: 60
+      minutes: 60,
+      No_of_Student: "text"
     };  
-    const modal = await DayPilot.Modal.form(form, data);
+    const modal = await DayPilot.Modal.form(form, data,);
 
     if (modal.canceled) {
       return;
     }
 
     const e = modal.result;
+    
     e.id = DayPilot.guid();
     e.duration = DayPilot.Duration.ofMinutes(e.minutes);
 

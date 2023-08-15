@@ -7,9 +7,18 @@ import {Observable} from 'rxjs';
 export class DataService {
 
   resources: any[] = [
-    { name: 'Group A', id: 'GA', expanded: true, children: [
-      { name: 'Resource 1', id: 'R1' },
-      { name: 'Resource 2', id: 'R2' }
+    { name: 'Date', id: 'GA', expanded: true, children: [
+      { name: '15-08-2023', id: 'R1' },
+      { name: '16-08-2023', id: 'R2' },
+      { name: '17-08-2023', id: 'R3' },
+      { name: '18-08-2023', id: 'R4' },
+      { name: '19-08-2023', id: 'R5' },
+      { name: '20-08-2023', id: 'R6' },
+      { name: '21-08-2023', id: 'R7' },
+      // { name: '15-08-2023', id: 'R1' },
+
+
+      // { name: 'Resource 2', id: 'R2' }
     ]},
     // { name: 'Group B', id: 'GB', expanded: true, children: [
     //   { name: 'Resource 3', id: 'R3', unavailable: true},
@@ -49,7 +58,8 @@ export class DataService {
   queue: any[] = [
     {
       id: '4',
-      duration: 4 * this.hourAsSeconds,
+      start: "2023-01-01T00:00:00",
+      end: "2023-01-01T04:00:00",
       text: 'Queue Event 1',
     },
     {
@@ -57,6 +67,19 @@ export class DataService {
       start: "2023-01-01T00:00:00",
       end: "2023-01-01T04:00:00",
       text: 'Queue Event 2',
+    },
+    {
+      id: '6',
+      start: "2023-01-01T00:00:00",
+      end: "2023-01-01T04:00:00",
+      text: 'Queue Event 3',
+    },
+    {
+      id: '7',
+      start: "2023-01-01T00:00:00",
+      end: "2023-01-01T04:00:00",
+      text: 'Queue Event 4',
+      NOofstudents:'students'
     },
   ];
 
